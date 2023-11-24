@@ -1,0 +1,17 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: Trigger
+metadata:
+  labels:
+    type: pipelines-demo
+  name: pipelines-demo
+  namespace: pipelines-demo
+spec:
+  bindings:
+  - ref: test-tb
+  template:
+    ref: test-tt
+# The below part is optional and only useful when integrating with GitHub
+  interceptors:
+  - ref:
+      kind: ClusterInterceptor
+      name: github

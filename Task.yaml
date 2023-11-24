@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: test-task
+  namespace: pipelines-demo
+spec:
+  params:
+  - name: git-repo-url
+    type: string
+  - name: git-repo-name
+    type: string
+  - name: git-revision
+    type: string
+  steps:
+  - name: task-step
+    image: registry.access.redhat.com/ubi8/ubi:latest
+    script: |
+      echo "$(params.git-repo-url), $(params.git-repo-name), $(params.git-revision)"
